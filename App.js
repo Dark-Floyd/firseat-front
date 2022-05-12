@@ -5,22 +5,25 @@ import { Provider, atom, useAtom } from "jotai";
 import Bus from './components/Bus'
 import { useState } from 'react'
 import Station from './components/Station'
-const OrderTicketModalVisible = atom(false);
+import { NativeBaseProvider, Box } from "native-base";
+import TicketBar from './components/TicketBar';
 const lines = [
-  { line: '921', frequency: '08:00', id: 1,company:'egged' },
-  { line: '826', frequency: '10:00', id: 2,company:'nativ' },
-  { line: '123', frequency: '08:00', id: 3,company:'dan' },
-  { line: '921', frequency: '09:00', id: 4,company:'egged' },
-  { line: '426', frequency: '08:00', id: 5,company:'nativ' },
-  { line: '545', frequency: '08:00', id: 6,company:'egged' },
+  { line: '921', frequency: '08:00', id: 1,company:'egged',start:'Tel Aviv',destination:'Haifa'},
+  { line: '826', frequency: '10:00', id: 2,company:'nativ',start:'Tel Aviv',destination:'Jerusalem' },
+  { line: '123', frequency: '08:00', id: 3,company:'dan',start:'Tel Aviv',destination:'Yad Natan' },
+  { line: '921', frequency: '09:00', id: 4,company:'egged',start:'Tel Aviv',destination:'Netivot' },
+  { line: '426', frequency: '08:00', id: 5,company:'nativ',start:'Tel Aviv',destination:'Jaffa' },
+  { line: '545', frequency: '08:00', id: 6,company:'egged',start:'Tel Aviv',destination:'Eilat' },
 ]
 export default function App() {
-  const [isOrderTicket, setIsOrderTicket] = useState(false)
+  
  
   return (
+    <NativeBaseProvider>
     <Provider>
     <View style={styles.container}>
-      <Header title="Firseat" />
+      <Header/>
+      <TicketBar></TicketBar>
       <Station name={'Tel Aviv'} id={'00456'} />
 
       <FlatList
@@ -32,15 +35,16 @@ export default function App() {
             key={itemData.id}
             line={itemData.item.line}
             frequency={itemData.item.frequency}
-            onPress={setIsOrderTicket}
-            visible={isOrderTicket}
+            start={itemData.item.start}
+            destination={itemData.item.destination}
           ></Bus>
         )}
       ></FlatList>
 
-      <StatusBar style="auto" />
+      <StatusBar style="light" backgroundColor='transparent' />
     </View>
     </Provider>
+    </NativeBaseProvider>
   )
 }
 

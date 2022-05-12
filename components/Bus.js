@@ -1,16 +1,29 @@
 import React from 'react'
 import { useState } from 'react'
+import { Center, Modal, FormControl, Button, Input } from 'native-base'
+
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
-import OrderTicket from './OrderTicket'
+import Window from './Window'
 const Bus = (props) => {
   const [isOrderTicket, setIsOrderTicket] = useState(false)
-
+  const [showModal, setShowModal] = useState(false)
   return (
     <View>
-      <OrderTicket visible={isOrderTicket} />
+      <Center>
+        <Window
+          isOpen={isOrderTicket}
+          close={() => setIsOrderTicket(false)}
+          line={props.line}
+          start={props.start}
+          destination={props.destination}
+          frequency={props.frequency}
+        />
+      </Center>
+     
+
       <TouchableOpacity
         activeOpacity={0.8}
-        onPress={() => setIsOrderTicket(!isOrderTicket)}
+        onPress={() => setIsOrderTicket(true)}
       >
         <View style={styles.card}>
           <Text style={styles.headerTitle}>{props.line}</Text>
