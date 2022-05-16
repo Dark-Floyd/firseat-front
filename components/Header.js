@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 23,
+    fontFamily:'sans-serif-condensed'
   },
 })
 
