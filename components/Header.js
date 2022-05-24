@@ -1,7 +1,5 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { Box } from 'native-base'
 //import Colors from '../constants/colors'
 const Header = () => {
   return (

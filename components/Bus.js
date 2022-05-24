@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { Center } from 'native-base'
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import OrderTicketModal from './OrderTicketModal'
+import Colors from '../constants/colors'
 const Bus = (props) => {
   const [isOrderTicket, setIsOrderTicket] = useState(false)
-
   return (
     <View>
       <Center>
@@ -45,17 +45,16 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 15,
     marginVertical: 5,
-
   },
   headerTitle: {
-    borderTopLeftRadius:15,
-    borderTopRightRadius:15,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
     color: 'black',
     fontSize: 18,
-    color: '#34a36c',
+    color: Colors.notification,
     fontWeight: 'bold',
     width: '100%',
-  
+
     backgroundColor: '#404da3',
     justifyContent: 'center',
     paddingLeft: 15,
@@ -67,4 +66,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Bus
+export default Bus;

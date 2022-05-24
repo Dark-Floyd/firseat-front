@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View, FlatList,TouchableOpacity } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
 import Header from './components/Header'
 import { Provider, atom, useAtom } from 'jotai'
 import Bus from './components/Bus'
@@ -7,7 +7,7 @@ import { useState, useCallback, useEffect } from 'react'
 import Station from './components/Station'
 import { NativeBaseProvider, Box,Center,VStack,Divider,Button } from 'native-base'
 import TicketBar from './components/TicketBar'
-import { getAllLines } from './api'
+import { getAllLines, getStation } from './api'
 import NfcManager, { NfcTech } from 'react-native-nfc-manager'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 const lines_mockup = [
@@ -80,66 +80,63 @@ export default function App() {
 
   const [ticket, setTicket] = useState(null)
   const [linesApi, setLinesApi] = useState([])
+  const [stationsApi, setStationsApi] = useState([])
+
+  const fetchStations = useCallback(async () => {
+    const res_stations = await getStation()
+    setStationsApi(res_stations)
+  }, [])
+
+
+
+
   const fetchLines = useCallback(async () => {
     const res = await getAllLines()
     setLinesApi(res)
   }, [])
   const renderLines = (lines) => {
-    return lines.map((line, i) => (
-      <Bus
-        style={styles.list}
-        key={i}
-        line={line.lineNumber}
-        frequency={'09:00'}
-        start={'X'}
-        destination={line.finalDestination}
-      ></Bus>
-    ))
+    return(<FlatList
+      showsVerticalScrollIndicator={false}
+      style={styles.list}
+      data={lines}
+      renderItem={(itemData) => (
+        <Bus
+          key={itemData.id}
+          line={itemData.item.lineNumber}
+          frequency={itemData.item.time}
+          start={itemData.item.start}
+          destination={itemData.item.finalDestination}
+          addTicket={addTicket}
+          availableSeats={itemData.item.availableSeats}
+        ></Bus>
+      )}
+    ></FlatList>
+  );
   }
   useEffect(() => {
     fetchLines()
+    fetchStations()
   }, [])
-
   const addTicket = (userId, ticket) => {
     setTicket(ticket)
   }
   const removeTicket = () => {
     setTicket(null)
   }
-
   return (
     <NativeBaseProvider>
       <Provider>
         <View style={styles.container}>
           <Center >
-          <MaterialCommunityIcons name="cellphone-nfc" size={80} color="white" />
+          {/* <MaterialCommunityIcons name="cellphone-nfc" size={80} color="white" />
             <Button onPress={readNdef} variant="outline" colorScheme={"dark"} borderRadius={20} margin={5}>
-              
               <Text style={{color:'white',fontSize:30}}>Press to Scan</Text>
-            </Button>
-            
+            </Button> */}
           </Center>
           <Header />
           <TicketBar ticket={ticket} removeTicket={removeTicket}></TicketBar>
-          <Station name={'Tel Aviv'} id={'00456'} />
-          
-          {/* {renderLines(linesApi)} */}
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            style={styles.list}
-            data={lines_mockup}
-            renderItem={(itemData) => (
-              <Bus
-                key={itemData.id}
-                line={itemData.item.line}
-                frequency={itemData.item.frequency}
-                start={itemData.item.start}
-                destination={itemData.item.destination}
-                addTicket={addTicket}
-              ></Bus>
-            )}
-          ></FlatList>
-
+          <Station name={"stationsApi[0].name"} id={"stationsApi[0].stationNumber"} />
+          {renderLines(linesApi)}
           <StatusBar style="light" backgroundColor="transparent" />
         </View>
       </Provider>

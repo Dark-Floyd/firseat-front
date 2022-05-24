@@ -12,7 +12,7 @@ const Station = (props) => {
 
 const styles = StyleSheet.create({
   header: {
-    width: '95%',
+    width: '100%',
     height: '10%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -23,11 +23,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     color: 'white',
-   
     fontSize: 18,
-    
-    
-
   },
   id: {
      justifyContent: 'center',
@@ -40,4 +36,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Station
+export default Station;

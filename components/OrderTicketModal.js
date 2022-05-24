@@ -1,15 +1,9 @@
-import {
-  Center,
-  Modal,
-  Button,
-  useToast,
-  Box,
-} from 'native-base'
+import { Center, Modal, Button, useToast, Box } from 'native-base'
 import React from 'react'
 import { StyleSheet, Text } from 'react-native'
 const OrderTicketModal = (props) => {
   const toast = useToast()
-  const id = 'test-toast'
+  const id = 'toast-id-1'
 
   const orderHandler = () => {
     if (!toast.isActive(id)) {
@@ -28,23 +22,23 @@ const OrderTicketModal = (props) => {
   }
   return (
     <Center>
-      <Modal isOpen={props.isOpen}  style={styles.modal}>
-        <Modal.Content maxWidth="450px"  style={styles.modalContent}>
+      <Modal isOpen={props.isOpen} style={styles.modal}>
+        <Modal.Content maxWidth="450px" style={styles.modalContent}>
           <Modal.Body style={styles.body}>
             <Center>
-            <Box style={styles.box}>
-              <Text style={styles.lineHeader}>Line</Text>
-              <Text style={styles.line}>{props.line}</Text>
-              <Text style={styles.lineHeader}>Time</Text>
-              <Text style={styles.line}> {props.frequency}</Text>
-              <Text style={styles.lineHeader}>Destination</Text>
-              <Text style={styles.line}> {props.destination}</Text>
-            </Box>
+              <Box style={styles.box}>
+                <Text style={styles.lineHeader}>Line</Text>
+                <Text style={styles.line}>{props.line}</Text>
+                <Text style={styles.lineHeader}>Time</Text>
+                <Text style={styles.line}> {props.frequency}</Text>
+                <Text style={styles.lineHeader}>Destination</Text>
+                <Text style={styles.line}> {props.destination}</Text>
+              </Box>
             </Center>
           </Modal.Body>
           <Modal.Footer style={styles.footer}>
             <Button.Group space={20}>
-            <Button
+              <Button
                 w="100"
                 variant="outline"
                 colorScheme="green"
@@ -69,38 +63,34 @@ const styles = StyleSheet.create({
     backgroundColor: '#303F9F',
     color: '#3f51b5',
   },
-  box:{
+  box: {
     justifyContent: 'center',
     alignItems: 'center',
-    height:180
+    height: 180,
   },
-  line:{
-    color:'white',
-    padding:2,
+  line: {
+    color: 'white',
+    padding: 2,
   },
-  lineHeader:{
-    color:'white',
-    padding:2,
-    fontWeight:'bold',
+  lineHeader: {
+    color: 'white',
+    padding: 2,
+    fontWeight: 'bold',
   },
   modal: {
     color: '#3f51b5',
-    borderBottomColor:'transparent'
-    
-   
+    borderBottomColor: 'transparent',
   },
   modalContent: {
-    borderRadius:30,
-    
+    borderRadius: 30,
   },
   footer: {
     borderTopColor: 'transparent',
-    justifyContent:'center',
-    
+    justifyContent: 'center',
   },
-  button:{
-    backgroundColor:'#404da3',
-    borderRadius:15,
-  }
+  button: {
+    backgroundColor: '#404da3',
+    borderRadius: 15,
+  },
 })
-export default OrderTicketModal
+export default OrderTicketModal;

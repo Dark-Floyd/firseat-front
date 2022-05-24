@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { Text, View, StyleSheet, Pressable,TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Box, Flex, Center } from 'native-base'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import TicketModal from './TicketModal'
-
 //import Colors from '../constants/colors'
 const TicketBar = (props) => {
   const [showModal, setShowModal] = useState(false)
@@ -39,12 +38,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#34a36c',
     alignItems: 'center',
     justifyContent: 'center',
-    borderBottomLeftRadius:13,
-    borderBottomRightRadius:13,
+    // borderBottomLeftRadius:13,
+    // borderBottomRightRadius:13,
     margin:0,
-    
-    
-
   },
   text: {
     color: 'white',
@@ -54,5 +50,4 @@ const styles = StyleSheet.create({
     paddingRight:5
   }
 })
-
-export default TicketBar
+export default TicketBar;
