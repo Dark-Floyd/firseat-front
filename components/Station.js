@@ -12,7 +12,7 @@ const Station = (props) => {
 
 const styles = StyleSheet.create({
   header: {
-    width: '80%',
+    width: '95%',
     height: '10%',
     justifyContent: 'center',
     alignItems: 'center',

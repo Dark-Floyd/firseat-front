@@ -9,6 +9,7 @@ import {
     Icon,
     useToast,
     usePlatformProps,
+    Box,
   } from 'native-base'
   import React from 'react'
   import { View, TextInput, StyleSheet, Text, Pressable } from 'react-native'
@@ -21,7 +22,7 @@ import {
       if (!toast.isActive(id)) {
         toast.show({
           id,
-          title: `Ticket removed ${props.ticket.lineId}`,
+          title: `Removed from line ${props.ticket.lineId} to ${props.ticket.destination}`,
           placement: 'top',
         })
         props.removeTicket(1)
@@ -31,67 +32,31 @@ import {
     return (
       <Center>
         <Modal isOpen={props.isOpen} onClose={props.close} style={styles.modal}>
-          <Modal.Content maxWidth="450px">
-            <Modal.CloseButton />
-            <Modal.Header style={styles.header}>Order Ticket</Modal.Header>
-            <Modal.Body>
+          <Modal.Content maxWidth="450px" style={styles.modalContent}>
+           
+           
+            <Modal.Body style={styles.body}>
               <Center>
-                <Stack direction="row" mb="5" mt="1.5" space={1}>
-                  <Center
-                    size="20"
-                    h="20"
-                    bg="primary.400"
-                    rounded="2xl"
-                    _text={{
-                      color: 'warmGray.50',
-                      fontWeight: 'medium',
-                    }}
-                    shadow={'3'}
-                  >
-          
-                    <FontAwesome5 name="clock" size={24} color="white" />
-                    {props.ticket.lineId}
-                    {console.log(props.ticket)}
-                  </Center>
-                  <Center
-                    bg="primary.500"
-                    size="20"
-                    h="20"
-                    rounded="2xl"
-                    _text={{
-                      color: 'warmGray.50',
-                      fontWeight: 'medium',
-                    }}
-                    shadow={'3'}
-                  >
-                    <FontAwesome name="road" size={24} color="white" />
-                    {props.destination}
-                  </Center>
-                  <Center
-                    size="20"
-                    h="20"
-                    bg="primary.700"
-                    rounded="2xl"
-                    _text={{
-                      color: 'warmGray.50',
-                      fontWeight: 'medium',
-                    }}
-                    shadow={'3'}
-                  >
-                    <FontAwesome5 name="bus" size={24} color="white" />
-                    {props.line}
-                  </Center>
-                </Stack>
+              <Box style={styles.box}>
+           
+           <Text style={styles.lineHeader}>Line</Text>
+           <Text style={styles.line}>{props.ticket.lineId}</Text>
+           <Text style={styles.lineHeader}>Time</Text>
+           <Text style={styles.line}> {props.ticket.time}</Text>
+           <Text style={styles.lineHeader}>Destination</Text>
+           <Text style={styles.line}> {props.ticket.destination}</Text>
+
+         </Box>
               </Center>
   
              
             </Modal.Body>
             <Modal.Footer style={styles.footer}>
-              <Button.Group space={4}>
-                <Button variant="solid" colorScheme="red" onPress={()=>removeTicket()}>
+              <Button.Group space={20}>
+                <Button variant="solid" colorScheme="red" onPress={()=>removeTicket()} style={styles.button}>
                   Remove Ticket
                 </Button>
-                <Button variant="solid" colorScheme="red" onPress={props.close}>
+                <Button variant="ghost" colorScheme="red" onPress={props.close}>
                   Cancel
                 </Button>
               </Button.Group>
@@ -103,16 +68,49 @@ import {
   }
   
   const styles = StyleSheet.create({
-    header: {
+    body: {
       backgroundColor: '#303F9F',
       color: '#3f51b5',
+      
+      
+    },
+    box:{
+      justifyContent: 'center',
+      alignItems: 'center',
+      height:180
+    },
+    line:{
+      color:'white',
+      padding:2,
+     
+    },
+    lineHeader:{
+      color:'white',
+      padding:2,
+     
+      fontWeight:'bold',
     },
     modal: {
       color: '#3f51b5',
+      borderBottomColor:'transparent'
+      
+     
+    },
+    modalContent: {
+      borderRadius:30,
+      
     },
     footer: {
       borderTopColor: 'transparent',
+      justifyContent:'center'
+      
+      
     },
+    button:{
+      backgroundColor:'#404da3',
+      borderRadius:15,
+      
+    }
   })
   export default TicketModal;
   

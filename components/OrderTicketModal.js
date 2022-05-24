@@ -1,18 +1,12 @@
 import {
   Center,
   Modal,
-  FormControl,
   Button,
-  Input,
-  VStack,
-  Stack,
-  Icon,
   useToast,
-  usePlatformProps,
+  Box,
 } from 'native-base'
 import React from 'react'
-import { View, TextInput, StyleSheet, Text, Pressable } from 'react-native'
-import { FontAwesome5, FontAwesome } from '@expo/vector-icons'
+import { StyleSheet, Text } from 'react-native'
 const OrderTicketModal = (props) => {
   const toast = useToast()
   const id = 'test-toast'
@@ -31,83 +25,36 @@ const OrderTicketModal = (props) => {
       })
       props.close()
     }
-
-    // save the time of the trip
-    // call api of saving ticket
-    // toast there is order
-    // light icon in header
   }
-
-  // isOpen prop closeWindow prop
   return (
     <Center>
-      <Modal isOpen={props.isOpen} onClose={props.close} style={styles.modal}>
-        <Modal.Content maxWidth="450px">
-          <Modal.CloseButton />
-          <Modal.Header style={styles.header}>Order Ticket</Modal.Header>
-          <Modal.Body>
+      <Modal isOpen={props.isOpen}  style={styles.modal}>
+        <Modal.Content maxWidth="450px"  style={styles.modalContent}>
+          <Modal.Body style={styles.body}>
             <Center>
-              <Stack direction="row" mb="5" mt="1.5" space={1}>
-                <Center
-                  size="20"
-                  h="20"
-                  bg="primary.400"
-                  rounded="2xl"
-                  _text={{
-                    color: 'warmGray.50',
-                    fontWeight: 'medium',
-                  }}
-                  shadow={'3'}
-                >
-                  <FontAwesome5 name="clock" size={24} color="white" />
-                  {props.frequency}
-                </Center>
-                <Center
-                  bg="primary.500"
-                  size="20"
-                  h="20"
-                  rounded="2xl"
-                  _text={{
-                    color: 'warmGray.50',
-                    fontWeight: 'medium',
-                  }}
-                  shadow={'3'}
-                >
-                  <FontAwesome name="road" size={24} color="white" />
-                  {props.destination}
-                </Center>
-                <Center
-                  size="20"
-                  h="20"
-                  bg="primary.700"
-                  rounded="2xl"
-                  _text={{
-                    color: 'warmGray.50',
-                    fontWeight: 'medium',
-                  }}
-                  shadow={'3'}
-                >
-                  <FontAwesome5 name="bus" size={24} color="white" />
-                  {props.line}
-                </Center>
-              </Stack>
-            </Center>
-
-            <Center>
-              <Button
-                w="128"
-                variant="solid"
-                colorScheme="green"
-                onPress={orderHandler}
-                rounded="xl"
-              >
-                Order
-              </Button>
+            <Box style={styles.box}>
+              <Text style={styles.lineHeader}>Line</Text>
+              <Text style={styles.line}>{props.line}</Text>
+              <Text style={styles.lineHeader}>Time</Text>
+              <Text style={styles.line}> {props.frequency}</Text>
+              <Text style={styles.lineHeader}>Destination</Text>
+              <Text style={styles.line}> {props.destination}</Text>
+            </Box>
             </Center>
           </Modal.Body>
           <Modal.Footer style={styles.footer}>
-            <Button.Group space={4}>
-              <Button variant="solid" colorScheme="red" onPress={props.close}>
+            <Button.Group space={20}>
+            <Button
+                w="100"
+                variant="outline"
+                colorScheme="green"
+                onPress={orderHandler}
+                rounded="xl"
+                style={styles.button}
+              >
+                Order
+              </Button>
+              <Button variant="ghost" colorScheme="red" onPress={props.close}>
                 Cancel
               </Button>
             </Button.Group>
@@ -117,17 +64,43 @@ const OrderTicketModal = (props) => {
     </Center>
   )
 }
-
 const styles = StyleSheet.create({
-  header: {
+  body: {
     backgroundColor: '#303F9F',
     color: '#3f51b5',
   },
+  box:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    height:180
+  },
+  line:{
+    color:'white',
+    padding:2,
+  },
+  lineHeader:{
+    color:'white',
+    padding:2,
+    fontWeight:'bold',
+  },
   modal: {
     color: '#3f51b5',
+    borderBottomColor:'transparent'
+    
+   
+  },
+  modalContent: {
+    borderRadius:30,
+    
   },
   footer: {
     borderTopColor: 'transparent',
+    justifyContent:'center',
+    
   },
+  button:{
+    backgroundColor:'#404da3',
+    borderRadius:15,
+  }
 })
 export default OrderTicketModal

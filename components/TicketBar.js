@@ -22,7 +22,7 @@ const TicketBar = (props) => {
           <View  >
             <Box alignSelf={'flex-start'} margin={4}>
               <Flex direction="row">
-              <MaterialCommunityIcons name="ticket-confirmation" size={24} color="white" style={styles.icon} />
+              <MaterialCommunityIcons name="ticket-confirmation" size={24} color="white" style={styles.icon}  />
                 <Text style={styles.text}>You've Ordered a ticket</Text>
               </Flex>
             </Box>
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderBottomLeftRadius:13,
     borderBottomRightRadius:13,
-    margin:0
+    margin:0,
+    
     
 
   },

@@ -25,7 +25,6 @@ const Bus = (props) => {
       >
         <View style={styles.card}>
           <Text style={styles.headerTitle}>{props.line}</Text>
-
           <Text style={styles.details}>Destination: {props.destination}</Text>
           <Text style={styles.details}>Next Bus: {props.frequency}</Text>
         </View>

@@ -5,10 +5,11 @@ import { Provider, atom, useAtom } from 'jotai'
 import Bus from './components/Bus'
 import { useState, useCallback, useEffect } from 'react'
 import Station from './components/Station'
-import { NativeBaseProvider, Box,Center,VStack,Divider } from 'native-base'
+import { NativeBaseProvider, Box,Center,VStack,Divider,Button } from 'native-base'
 import TicketBar from './components/TicketBar'
 import { getAllLines } from './api'
 import NfcManager, { NfcTech } from 'react-native-nfc-manager'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 const lines_mockup = [
   {
     line: '921',
@@ -110,11 +111,14 @@ export default function App() {
     <NativeBaseProvider>
       <Provider>
         <View style={styles.container}>
-          {/* <Center >
-            <TouchableOpacity onPress={readNdef}>
-              <Text>Scan a Tag</Text>
-            </TouchableOpacity>
-          </Center> */}
+          <Center >
+          <MaterialCommunityIcons name="cellphone-nfc" size={80} color="white" />
+            <Button onPress={readNdef} variant="outline" colorScheme={"dark"} borderRadius={20} margin={5}>
+              
+              <Text style={{color:'white',fontSize:30}}>Press to Scan</Text>
+            </Button>
+            
+          </Center>
           <Header />
           <TicketBar ticket={ticket} removeTicket={removeTicket}></TicketBar>
           <Station name={'Tel Aviv'} id={'00456'} />
@@ -146,9 +150,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
+    color:'white'
     
   },
   list: {

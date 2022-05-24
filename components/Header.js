@@ -7,14 +7,6 @@ const Header = () => {
   return (
     <View style={styles.header}>
       <Text style={styles.headerTitle}>Firseat</Text>
-      <Box alignSelf={'flex-end'} margin={3} display='none'>
-        <MaterialCommunityIcons
-          name="ticket-confirmation"
-          size={24}
-          color="white"
-          
-        />
-      </Box>
     </View>
   )
 }
@@ -24,7 +16,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '15%',
     paddingTop: 36,
-    backgroundColor: 'navy',
+    backgroundColor: '#18278c',
     alignItems: 'center',
     justifyContent: 'center',
   },
