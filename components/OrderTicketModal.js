@@ -6,7 +6,14 @@ const OrderTicketModal = (props) => {
   const id = 'toast-id-1'
 
   const orderHandler = () => {
-    if (!toast.isActive(id)) {
+    console.log(props.ticket)
+    if (props.ticket) {
+      toast.show({
+        id,
+        title: `You already ordered a ticket`,
+        placement: 'top',
+      })
+    } else if (!toast.isActive(id)) {
       toast.show({
         id,
         title: `You Ordered a Ticket to ${props.frequency}`,
@@ -93,4 +100,4 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
 })
-export default OrderTicketModal;
+export default OrderTicketModal

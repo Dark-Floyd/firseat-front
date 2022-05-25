@@ -17,6 +17,7 @@ const Bus = (props) => {
           destination={props.destination}
           frequency={props.frequency}
           addTicket={props.addTicket}
+          ticket={props.ticket}
         />
       </Center>
       <TouchableOpacity
